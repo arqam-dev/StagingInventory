@@ -1,0 +1,100 @@
+{
+  "name": "CustomRole",
+  "plural": "custom-roles",
+  "base": "Role",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "customUsers": {
+      "type": "hasMany",
+      "model": "CustomUser",
+      "foreignKey": "customRoleId"
+    },
+    "moduleListRoles": {
+      "type": "hasMany",
+      "model": "ModuleListRole",
+      "foreignKey": "customRoleId"
+    }
+  },
+  "acls": [],
+  "methods": {
+    "createCustomRole": {
+      "accepts": [
+        {
+          "arg": "data",
+          "type": "object",
+          "required": false,
+          "description": "name, description",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "Response",
+          "type": "object",
+          "root": true,
+          "description": "Response"
+        }
+      ],
+      "description": "This will create a role",
+      "http": [
+        {
+          "path": "/create-custom-role",
+          "verb": "post"
+        }
+      ]
+    },
+    "showAllRoles": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "Response",
+          "type": "object",
+          "root": true,
+          "description": "Response"
+        }
+      ],
+      "description": "This will show list of all the roles",
+      "http": [
+        {
+          "path": "/show-all-roles",
+          "verb": "get"
+        }
+      ]
+    },
+    "upsertRolePermissions": {
+      "accepts": [
+        {
+          "arg": "data",
+          "type": "array",
+          "required": false,
+          "description": "roleId, moduleId, moduleName, isRead, isWrite",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "Response",
+          "type": "object",
+          "root": true,
+          "description": "Response"
+        }
+      ],
+      "description": "This will update role permissions",
+      "http": [
+        {
+          "path": "/upsert-role-permissions",
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}

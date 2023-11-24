@@ -1,0 +1,87 @@
+{
+  "name": "ModuleList",
+  "plural": "module-lists",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "isModel": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "moduleLists": {
+      "type": "hasMany",
+      "model": "ModuleList",
+      "foreignKey": "parentId"
+    },
+    "modelLists": {
+      "type": "hasMany",
+      "model": "ModelList",
+      "foreignKey": "moduleId"
+    },
+    "moduleListRoles": {
+      "type": "hasMany",
+      "model": "ModuleListRole",
+      "foreignKey": "moduleListId"
+    }
+  },
+  "acls": [],
+  "methods": {
+    "createModule": {
+      "accepts": [
+        {
+          "arg": "data",
+          "type": "object",
+          "required": false,
+          "description": "name, description, parentId, modelName, endPointName",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "Respose",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "This will post a new module",
+      "http": [
+        {
+          "path": "/create-module",
+          "verb": "post"
+        }
+      ]
+    },
+    "showModulesList": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "Response",
+          "type": "object",
+          "root": true,
+          "description": "response"
+        }
+      ],
+      "description": "This will show the names of all modules",
+      "http": [
+        {
+          "path": "/show-modules-list",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "Permission",
+  "plural": "permissions",
+  "base": "ACL",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "moduleType": {
+      "type": "string"
+    },
+    "moduleName": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "showAllPermissions": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "Response",
+          "type": "object",
+          "root": true,
+          "description": "Response"
+        }
+      ],
+      "description": "This will show all the roles with their permissions",
+      "http": [
+        {
+          "path": "/show-all-permissions",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

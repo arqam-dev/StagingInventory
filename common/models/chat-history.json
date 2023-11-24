@@ -1,0 +1,68 @@
+{
+  "name": "ChatHistory",
+  "plural": "chat-histories",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "fileUrl": {
+      "type": "text",
+      "default": ""
+    },
+    "text": {
+      "type": "text",
+      "default": ""
+    },
+    "receiverId": {
+      "type": "number",
+      "default": 0
+    },
+    "date": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "showChatMessagesOneToOne": {
+      "accepts": [
+        {
+          "arg": "receiverId",
+          "type": "string",
+          "required": false,
+          "description": "receiverId",
+          "http": {
+            "source": "query"
+          }
+        },
+        {
+          "arg": "customUserId",
+          "type": "string",
+          "required": false,
+          "description": "customUserId",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "Response",
+          "type": "object",
+          "root": true,
+          "description": "Response"
+        }
+      ],
+      "description": "This will show list of all messages in one to one chat",
+      "http": [
+        {
+          "path": "/show-chat-messages-oneToOne",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

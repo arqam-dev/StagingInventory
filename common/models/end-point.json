@@ -1,0 +1,50 @@
+{
+  "name": "EndPoint",
+  "plural": "end-points",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "showEndPointsListAgainstModel": {
+      "accepts": [
+        {
+          "arg": "modelName",
+          "type": "string",
+          "required": false,
+          "description": "",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "Response",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "This will show all the end-points against specific model",
+      "http": [
+        {
+          "path": "/show-endpoints-list",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

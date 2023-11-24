@@ -1,0 +1,157 @@
+{
+  "name": "CustomUser",
+  "plural": "custom-users",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "phoneNo": {
+      "type": "string"
+    },
+    "phoneNoVerificationCode": {
+      "type": "number"
+    },
+    "isAccountApproved": {
+      "type": "boolean"
+    },
+    "isPhoneVerified": {
+      "type": "boolean"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "secondName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "chatHistories": {
+      "type": "hasMany",
+      "model": "ChatHistory",
+      "foreignKey": "customUserId"
+    }
+  },
+  "acls": [],
+  "methods": {
+    "createCustomUser": {
+      "accepts": [{
+        "arg": "data",
+        "type": "object",
+        "required": false,
+        "description": "username, password, email, customRoleId",
+        "http": {
+          "source": "body"
+        }
+      }],
+      "returns": [{
+        "arg": "Response",
+        "type": "object",
+        "root": true,
+        "description": "Response"
+      }],
+      "description": "This will create a user",
+      "http": [{
+        "path": "/create-custom-user",
+        "verb": "post"
+      }]
+    },
+    "getAllCustomUser1": {
+      "accepts": [{
+        "arg": "data",
+        "type": "string",
+        "required": false,
+        "description": "data",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": [{
+        "arg": "Response",
+        "type": "object",
+        "root": true,
+        "description": "Response"
+      }],
+      "description": "This will show referral requests of student",
+      "http": [{
+        "path": "/get-all-custom-users1",
+        "verb": "get"
+      }]
+    },
+    "showUsersListForOneToOneChat": {
+      "accepts": [{
+        "arg": "customUserId",
+        "type": "number",
+        "required": false,
+        "description": "customUserId",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": [{
+        "arg": "Response",
+        "type": "object",
+        "root": true,
+        "description": "Response"
+      }],
+      "description": "This will show referral requests of student",
+      "http": [{
+        "path": "/show-users-list-for-OneToOne-chat",
+        "verb": "get"
+      }]
+    },
+    "Invite": {
+      "accepts": [{
+        "arg": "email",
+        "type": "string",
+        "required": true,
+        "description": "User email to invite",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": [{
+        "arg": "Response",
+        "type": "object",
+        "root": true,
+        "description": "Response"
+      }],
+      "description": "",
+      "http": [{
+        "path": "/send-invitation",
+        "verb": "post"
+      }]
+    },
+     "EditProfile": {
+      "accepts": [{
+        "arg": "User Data",
+        "type": "object",
+        "required": true,
+        "description": "Data for profile Edit",
+        "http": {
+          "source": "body"
+        }
+      }],
+      "returns": [{
+        "arg": "Response",
+        "type": "object",
+        "root": true,
+        "description": "Response"
+      }],
+      "description": "",
+      "http": [{
+        "path": "/edit-profile",
+        "verb": "post"
+      }]
+    }
+  }
+}

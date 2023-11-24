@@ -1,0 +1,74 @@
+{
+  "name": "ModelList",
+  "plural": "model-lists",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "endPoints": {
+      "type": "hasMany",
+      "model": "EndPoint",
+      "foreignKey": "modelListId"
+    }
+  },
+  "acls": [],
+  "methods": {
+    "showModelsList": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "Response",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "This will show all the models in the application",
+      "http": [
+        {
+          "path": "/show-models-list",
+          "verb": "get"
+        }
+      ]
+    },
+    "showModelsListAgainstModule": {
+      "accepts": [
+        {
+          "arg": "moduleId",
+          "type": "number",
+          "required": false,
+          "description": "",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "Response",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "This will show all the models against specific module",
+      "http": [
+        {
+          "path": "/show-models-list-sgainst-module",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}
